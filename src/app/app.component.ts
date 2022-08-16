@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { staticTodos, Todo, name } from "./todos";
+import { initialTodos, Todo, name } from "./todos";
 
 @Component({
   selector: "app-root",
@@ -8,5 +8,9 @@ import { staticTodos, Todo, name } from "./todos";
 })
 export class AppComponent {
   public name: String = name;
-  public todos: Todo[] = staticTodos;
+  public todos: Todo[] = initialTodos;
+
+  public onNotify(val: boolean) {
+    console.log(`Catched ${val}`);
+  }
 }

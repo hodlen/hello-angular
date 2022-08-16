@@ -1,5 +1,10 @@
 <div>
-  <input type="checkbox" />
+  <input
+    type="checkbox"
+    [checked]="todoItem.completed"
+    (click)="onCheck(!todoItem.completed)"
+  />
+
   {{ todoItem.content }}
   <span *ngIf="todoItem.subtasks.length > 0">
     ({{ todoItem.subtasks.length }})
