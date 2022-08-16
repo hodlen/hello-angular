@@ -3,10 +3,11 @@
 We have {{ todos.length }} todos.
 
 <ul>
-  <li *ngFor="let todo of todos">
-    <app-todo-item 
-      [todoItem]="todo"
-      (notify)="onNotify($event)"
-    ></app-todo-item>
+  <li *ngFor="let todo of todos; index as i">
+    <app-todo-item [todoItem]="todo" [indexPath]="[i]" (notify)="onTodoUpdate($event)"></app-todo-item>
   </li>
 </ul>
+
+<button (click)="onAppendTodo()">
+  Create a new To-do
+</button>

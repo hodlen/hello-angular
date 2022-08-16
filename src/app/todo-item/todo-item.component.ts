@@ -1,33 +1,40 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges
-} from "@angular/core";
-import { Todo } from "../todos";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Todo, UpdateTodoPayload } from '../todos';
 
 @Component({
-  selector: "app-todo-item",
-  templateUrl: "./todo-item.component.html",
-  styleUrls: ["./todo-item.component.css"]
+  selector: 'app-todo-item',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.css'],
 })
-export class TodoItemComponent implements OnInit, OnChanges {
+export class TodoItemComponent implements OnInit {
   @Input() public todoItem!: Todo;
-  @Output() public notify = new EventEmitter<boolean>();
+  @Input() public indexPath: number[] = [];
+  @Output() public notify = new EventEmitter<UpdateTodoPayload>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  onChange(newTodo: Todo) {
+    this.notify.emit({
+      type: 'update-self',
+      newTodo,
+      path: this.indexPath,
+    });
   }
 
   onCheck(checked: boolean) {
-    this.todoItem.completed = checked;
-    this.notify.emit(checked);
+    this.onChange({ ...this.todoItem, completed: checked });
+  }
+
+  onInput(value: string) {
+    this.onChange({ ...this.todoItem, content: value });
+  }
+
+  onSwap(direction: 'swap-up' | 'swap-down') {
+    this.notify.emit({
+      type: direction,
+      path: this.indexPath,
+    });
   }
 }

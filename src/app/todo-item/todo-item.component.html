@@ -1,18 +1,18 @@
 <div>
-  <input
-    type="checkbox"
-    [checked]="todoItem.completed"
-    (click)="onCheck(!todoItem.completed)"
-  />
+  <input type="checkbox" [checked]="todoItem.completed" (click)="onCheck(!todoItem.completed)" />
 
-  {{ todoItem.content }}
+  <input type="text" [value]="todoItem.content" />
   <span *ngIf="todoItem.subtasks.length > 0">
     ({{ todoItem.subtasks.length }})
   </span>
+
+  <button (click)="onSwap('swap-up')">Up</button>
+  <button (click)="onSwap('swap-down')">Down</button>
+
   <!-- Show child todos -->
   <ul *ngIf="todoItem.subtasks.length > 0">
-    <li *ngFor="let todo of todoItem.subtasks">
-      <app-todo-item [todoItem]="todo"></app-todo-item>
+    <li *ngFor="let todo of todoItem.subtasks, index as i">
+      <app-todo-item [todoItem]="todo" [indexPath]="indexPath.concat(i)"></app-todo-item>
     </li>
   </ul>
 </div>
