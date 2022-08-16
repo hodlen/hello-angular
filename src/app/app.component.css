@@ -1,0 +1,15 @@
+ul {
+  list-style-type: none;
+}
+
+.cleaning {
+  color: purple;
+}
+
+.cleaning.weekends {
+  color: red;
+}
+
+body > ul > li > ul {
+  padding-left: 20px;
+}

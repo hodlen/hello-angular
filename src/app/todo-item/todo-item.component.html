@@ -1,0 +1,13 @@
+<div>
+  <input type="checkbox" />
+  {{ todoItem.content }}
+  <span *ngIf="todoItem.subtasks.length > 0">
+    ({{ todoItem.subtasks.length }})
+  </span>
+  <!-- Show child todos -->
+  <ul *ngIf="todoItem.subtasks.length > 0">
+    <li *ngFor="let todo of todoItem.subtasks">
+      <app-todo-item [todoItem]="todo"></app-todo-item>
+    </li>
+  </ul>
+</div>
