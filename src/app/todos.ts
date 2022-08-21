@@ -1,38 +1,36 @@
 export type Todo = {
   content: String;
+  completed: boolean;
   subtasks: Todo[];
 };
 
 export const staticTodos: Todo[] = [
   {
     content: "Work on the landing page",
+    completed: true,
     subtasks: []
   },
   {
     content: "Buy food",
-    subtasks: []
-  },
-  {
-    content: "Design a banner",
-    subtasks: []
-  },
-  {
-    content: "Cleaning on weekends",
+    completed: false,
     subtasks: [
       {
-        content: "Declutter phone, laptop",
-        subtasks: []
-      },
-      {
-        content: "Get a mattress",
+        content: "Buy milk",
+        completed: false,
         subtasks: [
           {
-            content: "Blah Blah",
+            content: "Buy tea spoons",
+            completed: false,
             subtasks: []
           }
         ]
       }
     ]
+  },
+  {
+    content: "Design a banner",
+    completed: false,
+    subtasks: []
   }
 ];
 

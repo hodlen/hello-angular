@@ -4,6 +4,11 @@ We have {{ todos.length }} todos.
 
 <ul>
   <li *ngFor="let todo of todos">
-    <app-todo-item [todoItem]="todo"></app-todo-item>
+    <app-todo-item
+      [todoItem]="todo"
+      (updateTodo)="updateTodo($event)"
+    ></app-todo-item>
   </li>
 </ul>
+
+<button (click)="addTodo()">Add a new To-do!</button>
